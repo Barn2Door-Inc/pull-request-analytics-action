@@ -6,20 +6,22 @@ This GitHub Action measures metrics for developers and/or teams. Reports are gen
 
 ## Table of Contents
 
-- [Key Features](#key-features)
-- [Getting started](#getting-started)
-- [Configuration Examples](#configuration-examples)
-- [Report examples](#report-examples)
-- [Using GitHub Enterprise Server](#using-github-enterprise-server)
-- [Detailed Report on Discussion Types](#detailed-report-on-discussion-types)
-- [Pull Request Sizes](#pull-request-sizes)
-- [Report Data Grouping, AMOUNT Parameter, and Time Calculation Logic](#detailed-report-on-discussion-types)
-- [Configuration Parameters Overview](#configuration-parameters-overview)
-- [Outputs](#outputs)
-- [Privacy and Data Handling](#privacy-and-data-handling)
-- [Usage Limitations](#usage-limitations)
-- [Recommendations and Tips](#recommendations-and-tips)
-- [How You Can Help](#how-you-can-help)
+- [Pull request analytics action](#pull-request-analytics-action)
+  - [Table of Contents](#table-of-contents)
+  - [Key Features:](#key-features)
+  - [Getting started](#getting-started)
+  - [Configuration Examples](#configuration-examples)
+  - [Report Examples](#report-examples)
+  - [Using GitHub Enterprise Server](#using-github-enterprise-server)
+  - [Detailed Report on Discussion Types](#detailed-report-on-discussion-types)
+  - [Pull Request Sizes](#pull-request-sizes)
+  - [Report Data Grouping, AMOUNT Parameter, and Time Calculation Logic](#report-data-grouping-amount-parameter-and-time-calculation-logic)
+  - [Configuration Parameters Overview](#configuration-parameters-overview)
+  - [Outputs](#outputs)
+  - [Privacy and Data Handling](#privacy-and-data-handling)
+  - [Usage Limitations](#usage-limitations)
+  - [Recommendations and Tips](#recommendations-and-tips)
+  - [How You Can Help](#how-you-can-help)
 
 ## Key Features:
 
@@ -329,7 +331,6 @@ Below is a table outlining the various configuration parameters available for **
 | `INCLUDE_LABELS`          | Only PRs with mentioned labels will be included in the report. Values should be separated by commas. Example: `bugfix, enhancement`                                                                                                                                                                                                                                                                   | -                                                                       |
 | `EXECUTION_OUTCOME`       | This parameter allows you to specify the format in which you wish to receive the report. Options include creating a new issue, updating an existing one, obtaining markdown, or JSON. Markdown and JSON will be available in outputs. Can take mulitple values separated by commas: `new-issue`, `markdown`, `collection`, `existing-issue`. This parameter is **required** Example: `existing-issue` | `new-issue`                                                             |
 | `ISSUE_NUMBER`            | Issue number to update. Add `existing-issue` to `EXECUTION_OUTCOME` for updating existing issue. The specified issue must already exist at the time the action is executed. This parameter is mandatory if the `EXECUTION_OUTCOME` input includes `existing-issue` value                                                                                                                              | -                                                                       |
-| `ALLOW_ANALYTICS`         | Allows sending non-sensitive inputs to mixpanel for better understanding user's needs. Set the value to `false` to disable data transmission to Mixpanel                                                                                                                                                                                                                                              | `true`                                                                  |
 
 Use these parameters to tailor the **pull-request-analytics-action** to your project's specific requirements.
 
@@ -345,10 +346,6 @@ Below is a table describing the possible outputs of **pull-request-analytics-act
 ## Privacy and Data Handling
 
 **pull-request-analytics-action** is designed with privacy and data security as paramount concerns. The action operates statelessly, meaning it neither stores nor transmits any data obtained during its execution. All operations are conducted entirely within the GitHub environment to ensure the utmost privacy and security of user data.
-
-In version `v2`, to better understand user needs and to allocate resources more efficiently for the action's development, some non-sensitive input data are transmitted to Mixpanel. This is strictly limited to inputs that do not compromise the security or privacy of your projects. The complete list of inputs sent can be reviewed in [this file](https://github.com/AlexSim93/pull-request-analytics-action/tree/v2/src/analytics/sendActionRun.ts).
-
-Data transmission to Mixpanel can be disabled by setting the `ALLOW_ANALYTICS` input to `false`. However, we strongly encourage you not to disable this feature. The data sent poses no threat to your project's security or privacy but can significantly aid in the development and improvement of **pull-request-analytics-action**.
 
 ## Usage Limitations
 
